@@ -17,3 +17,6 @@ class MovieResponse(MovieBase):
 
     class Config:
         from_attributes = True
+
+class TextInput(BaseModel):
+    text: str

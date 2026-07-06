@@ -1,13 +1,13 @@
 from fastapi import FastAPI, HTTPException
 from app.database import MOVIES_DB
-from app.schemas import MovieCreate, MovieResponse
+from app.schemas import MovieCreate, MovieResponse, TextInput
 from app.llm import extract_movie
 
 app = FastAPI(title="Movie Management System", version="1.0.0")
 
 @app.post("/movies/ai-extract", response_model=MovieResponse, status_code=201)
-def extract_and_create(text: str):
-    movie_data = extract_movie(text)
+def extract_and_create(payload: TextInput):
+    movie_data = extract_movie(payload.text) 
     
     next_id = max(MOVIES_DB.keys(), default=0) + 1
     new_movie = {
