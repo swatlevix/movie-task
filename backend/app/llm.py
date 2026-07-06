@@ -3,7 +3,6 @@ import instructor
 from app.schemas import MovieBase 
 
 MODEL = "gemma4:31b-cloud"
-client = instructor.from_provider(f"ollama/{MODEL}")
 
 SYSTEM_PROMPT = """
 You are an expert data extraction assistant specialized in movies. 
@@ -32,10 +31,18 @@ FEW_SHOT_EXAMPLES = [
         "role": "assistant",
         "content": '{"title": "Inception", "review": "An amazing 2010 sci-fi film starring Leonardo DiCaprio."}',
     },
+    {
+        "role": "user",
+        "content": "Silver Linings Playbook, 2012, David O. Russell, a touching and realistic drama.",
+    },
+    {
+        "role": "assistant",
+        "content": '{"title": "Silver Linings Playbook", "review": "A touching and realistic drama directed by David O. Russell in 2012."}',
+    },
 ]
 
-
 def extract_movie(text: str) -> MovieBase:
+    client = instructor.from_provider(f"ollama/{MODEL}")
     return client.create(
         response_model=MovieBase,
         messages=[
@@ -44,4 +51,3 @@ def extract_movie(text: str) -> MovieBase:
             {"role": "user", "content": text},
         ],
     )
-

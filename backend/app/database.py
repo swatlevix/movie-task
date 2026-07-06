@@ -1,3 +1,3 @@
 MOVIES_DB = {1: {"id": 1, "title": "Inception", "director": "Christopher Nolan", "release_year": 2010, "rating": 5, "review": "A masterpiece of sci-fi cinema.", "is_watched": True},
-             2: {"id": 2, "title": "The Matrix", "director": "The Wachowskis", "release_year": 1999, "rating": 5, "review": "A groundbreaking sci-fi classic.", "is_watched": False},
-             3: {"id": 3, "title": "Silver Linings Playbook", "director": "David O. Russell", "release_year": 2012, "rating": 5, "review": "A touching and realistic drama.", "is_watched": False}}
+             2: {"id": 2, "title": "The Matrix", "director": "The Wachowskis", "release_year": 1999, "rating": 5, "review": "A groundbreaking sci-fi classic.", "is_watched": False}
+            }

@@ -5,6 +5,25 @@ from app.llm import extract_movie
 
 app = FastAPI(title="Movie Management System", version="1.0.0")
 
+@app.get("/movies", response_model=list[MovieResponse])
+def list_movies():
+    return list(MOVIES_DB.values())
+
+@app.post("/movies", response_model=MovieResponse, status_code=201)
+def create_movie(movie: MovieCreate):
+    next_id = max(MOVIES_DB.keys(), default=0) + 1
+    new_movie = {
+        "id": next_id,
+        "title": movie.title,
+        "director": movie.director,
+        "release_year": movie.release_year,
+        "rating": movie.rating,
+        "review": movie.review,
+        "is_watched": False
+    }
+    MOVIES_DB[next_id] = new_movie
+    return new_movie
+
 @app.post("/movies/ai-extract", response_model=MovieResponse, status_code=201)
 def extract_and_create(payload: TextInput):
     movie_data = extract_movie(payload.text) 
