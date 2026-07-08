@@ -1,10 +1,13 @@
 import sys
 from commands.show import ShowCommand
 from commands.add import AddCommand
+from commands.extract import ExtractCommand
+
 
 COMMANDS = {
     "show": ShowCommand(),
-    "add": AddCommand()
+    "add": AddCommand(),
+    "extract": ExtractCommand()
 }
 
 def main():

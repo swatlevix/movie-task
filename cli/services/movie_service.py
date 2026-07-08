@@ -29,3 +29,18 @@ class MovieService(ApiService):
                 "Release Year": data["release_year"] or "N/A"
             }
         }
+    
+    def extract_movie_from_text(self, text: str):
+        payload = {"text": text}
+        data = self.post("/movies/ai-extract", payload)
+        return {
+            "title": "Movie Extracted Successfully",
+            "items": {
+                "ID": data["id"],
+                "Title": data["title"],
+                "Director": data["director"] or "Unknown",
+                "Release Year": data["release_year"] or "N/A",
+                "Rating": data["rating"] or "N/A",
+                "Review": data["review"] or "N/A"
+            }
+        }
